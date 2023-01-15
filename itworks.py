@@ -19,7 +19,7 @@ while True:
 
     edged= cv.Canny(mask,30,200)
     
-    ret, thresh1 = cv.threshold(img, 100, 500, cv.THRESH_BINARY)
+    ret, thresh1 = cv.threshold(img, 50, 500, cv.THRESH_BINARY_INV)
     thresh1 = cv.cvtColor(thresh1, cv.COLOR_RGB2GRAY)
     contours, hiearchy = cv.findContours(thresh1,cv.RETR_TREE,cv.CHAIN_APPROX_SIMPLE)
     def get_contour_areas(contours):
@@ -39,7 +39,7 @@ while True:
     largest_item= sorted_contours[0]
 
     img = cv .drawContours(mask, largest_item, -1, (0,255,255), 3)
-    
+    #thresh1 = cv.cvtColor(thresh1,cv.COLOR_RGB2GRAY)
     cv.imshow('mask',thresh1)
     cv.imshow('img',img)
     key = cv.waitKey(5)
